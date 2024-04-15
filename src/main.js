@@ -16,25 +16,24 @@ let page;
 
 form.addEventListener('submit', async event => {
   try {
+    list.innerHTML = '';
     nextButton.classList.add('is-hidden');
     page = 1;
     event.preventDefault();
-    if (input.value.trim() === '') {
+    globalImageName = input.value.trim();
+    event.target.reset();
+    if (globalImageName === '') {
       iziToast.show({
         title: 'Error',
-        message: 'Invalid value',
+        message: 'Invalid search request value',
         backgroundColor: 'red',
         theme: 'dark',
         color: 'red',
         position: 'topRight',
       });
+      return;
     }
-
     loader.classList.add('is-loading');
-
-    globalImageName = input.value.trim();
-    list.innerHTML = '';
-    input.value = '';
 
     const { hits, totalHits } = await fetchSearch(globalImageName, page);
     globalTotalHits = totalHits;
