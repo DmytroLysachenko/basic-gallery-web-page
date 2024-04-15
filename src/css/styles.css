@@ -1,9 +1,4 @@
-/**
-  |============================
-  | include css partials with
-  | default @import url()
-  |============================
-*/
+
 :root {
   font-family: Inter, Avenir, Helvetica, Arial, sans-serif;
   font-size: 16px;
@@ -18,6 +13,9 @@
   -webkit-font-smoothing: antialiased;
   -moz-osx-font-smoothing: grayscale;
   -webkit-text-size-adjust: 100%;
+}
+html {
+  scroll-behavior: smooth;
 }
 ul,
 ol,
@@ -163,3 +161,27 @@ li {
 }
 
 /* #endregion loader */
+
+/* #region scroll-up */
+.scrollbutton {
+  display: none;
+  position: fixed;
+  bottom: 10%;
+  right: 10%;
+  background-color: salmon;
+  color: #e8e8e8;
+  padding: 10px 20px;
+  border-radius: 5px;
+  text-decoration: none;
+  transition: transform 200ms ease-in-out;
+}
+
+.is-open {
+  display: block;
+}
+
+.scrollbutton:hover {
+  background-color: pink;
+  transform: scale(1.2);
+}
+/* #endregion scroll-up */

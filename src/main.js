@@ -10,12 +10,14 @@ const input = document.querySelector('.search-input');
 const list = document.querySelector('.gallery-list');
 const loader = document.querySelector('.loader');
 const nextButton = document.querySelector('.next-button');
+const scrollBtn = document.querySelector('.scrollbutton');
 let globalImageName;
 let globalTotalHits;
 let page;
 
 form.addEventListener('submit', async event => {
   try {
+    scrollBtn.classList.remove('is-open');
     list.innerHTML = '';
     nextButton.classList.add('is-hidden');
     page = 1;
@@ -57,6 +59,7 @@ form.addEventListener('submit', async event => {
     loader.classList.remove('is-loading');
     if (globalTotalHits / 15 > 1) {
       nextButton.classList.remove('is-hidden');
+      nextButton.addEventListener('click', onClickNextButton);
     }
     const lightbox = new SimpleLightbox('.gallery-link', {
       captionDelay: 250,
@@ -87,12 +90,16 @@ const onClickNextButton = async event => {
     lightbox.refresh();
     if (page === Math.ceil(globalTotalHits / 15)) {
       nextButton.removeEventListener('click', onClickNextButton);
+      iziToast.info({
+        title: 'Unfortunately',
+        message: 'All pictures are shown already.',
+      });
+      scrollBtn.classList.add('is-open');
     }
   } catch (error) {
     console.log(error);
   }
 };
-nextButton.addEventListener('click', onClickNextButton);
 
 list.addEventListener('click', event => {
   event.preventDefault();
