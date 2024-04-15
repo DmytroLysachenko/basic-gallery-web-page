@@ -11,10 +11,16 @@ const initalRender = () => {
   button.type = 'submit';
   button.classList.add('search-button');
   button.textContent = 'Search';
+  const nextButton = document.createElement('button');
+  nextButton.textContent = 'Load more';
+  nextButton.classList.add('search-button');
+  nextButton.classList.add('next-button');
+  nextButton.classList.add('is-hidden');
+  nextButton.type = 'button';
   const list = document.createElement('ul');
   list.classList.add('gallery-list');
   form.append(input, button);
-  document.body.append(form, list);
+  document.body.append(form, list, nextButton);
 };
 
 const renderGallery = imagesGallery => {
@@ -62,13 +68,4 @@ const renderGallery = imagesGallery => {
     return item;
   });
   return result;
-};
-
-export const nextButton = () => {
-  const button = document.createElement('button');
-  button.textContent = 'Load more';
-  button.classList.add('search-button');
-  button.classList.add('next-button');
-  button.type = 'button';
-  return button;
 };

@@ -15,7 +15,6 @@ const fetchSearch = async (imageName, page) => {
         per_page: 15,
       },
     });
-    console.log(result);
     return result.data;
   } catch (error) {
     console.log(error);

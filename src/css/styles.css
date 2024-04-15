@@ -77,6 +77,10 @@ li {
   margin-bottom: 20px;
 }
 
+.is-hidden {
+  display: none;
+}
+
 .gallery-list {
   margin: 0 auto;
   display: flex;
@@ -94,8 +98,7 @@ li {
   height: 142px;
   overflow: hidden;
 }
-.gallery-image {
-}
+
 .gallery-desc-list {
   display: flex;
   flex-direction: row;
