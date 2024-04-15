@@ -70,21 +70,25 @@ form.addEventListener('submit', async event => {
 });
 
 nextButton.addEventListener('click', async event => {
-  nextButton.classList.add('is-hidden');
-  loader.classList.add('is-loading');
-  page += 1;
-  const { hits } = await fetchSearch(globalImageName, page);
-  const gallery = renderGallery(hits);
-  list.append(...gallery);
-  if (page < Math.ceil(globalTotalHits / 15)) {
-    nextButton.classList.remove('is-hidden');
+  try {
+    nextButton.classList.add('is-hidden');
+    loader.classList.add('is-loading');
+    page += 1;
+    const { hits } = await fetchSearch(globalImageName, page);
+    const gallery = renderGallery(hits);
+    list.append(...gallery);
+    if (page < Math.ceil(globalTotalHits / 15)) {
+      nextButton.classList.remove('is-hidden');
+    }
+    loader.classList.remove('is-loading');
+    const lightbox = new SimpleLightbox('.gallery-link', {
+      captionDelay: 250,
+      captionsData: 'alt',
+    });
+    lightbox.refresh();
+  } catch (error) {
+    console.log(error);
   }
-  loader.classList.remove('is-loading');
-  const lightbox = new SimpleLightbox('.gallery-link', {
-    captionDelay: 250,
-    captionsData: 'alt',
-  });
-  lightbox.refresh();
 });
 
 list.addEventListener('click', event => {
