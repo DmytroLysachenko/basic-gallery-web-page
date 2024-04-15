@@ -70,13 +70,16 @@ form.addEventListener('submit', async event => {
 });
 
 nextButton.addEventListener('click', async event => {
+  nextButton.classList.add('is-hidden');
+  loader.classList.add('is-loading');
   page += 1;
   const { hits } = await fetchSearch(globalImageName, page);
   const gallery = renderGallery(hits);
   list.append(...gallery);
-  if (page === Math.ceil(globalTotalHits / 15)) {
-    nextButton.classList.add('is-hidden');
+  if (page < Math.ceil(globalTotalHits / 15)) {
+    nextButton.classList.remove('is-hidden');
   }
+  loader.classList.remove('is-loading');
   const lightbox = new SimpleLightbox('.gallery-link', {
     captionDelay: 250,
     captionsData: 'alt',

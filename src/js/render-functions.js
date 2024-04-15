@@ -20,7 +20,7 @@ const initalRender = () => {
   const list = document.createElement('ul');
   list.classList.add('gallery-list');
   form.append(input, button);
-  document.body.append(form, list, nextButton);
+  document.body.prepend(form, list, nextButton);
 };
 
 const renderGallery = imagesGallery => {
