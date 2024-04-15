@@ -88,6 +88,13 @@ const onClickNextButton = async event => {
       captionsData: 'alt',
     });
     lightbox.refresh();
+    const item = document.querySelector('li');
+    const height = item.getBoundingClientRect().height;
+    console.log(height);
+    window.scrollBy({
+      top: height * 2,
+      behavior: 'smooth',
+    });
     if (page === Math.ceil(globalTotalHits / 15)) {
       nextButton.removeEventListener('click', onClickNextButton);
       iziToast.info({
