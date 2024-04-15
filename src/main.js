@@ -68,7 +68,7 @@ form.addEventListener('submit', async event => {
   }
 });
 
-nextButton.addEventListener('click', async event => {
+const onClickNextButton = async event => {
   try {
     nextButton.classList.add('is-hidden');
     loader.classList.add('is-loading');
@@ -85,10 +85,14 @@ nextButton.addEventListener('click', async event => {
       captionsData: 'alt',
     });
     lightbox.refresh();
+    if (page === Math.ceil(globalTotalHits / 15)) {
+      nextButton.removeEventListener('click', onClickNextButton);
+    }
   } catch (error) {
     console.log(error);
   }
-});
+};
+nextButton.addEventListener('click', onClickNextButton);
 
 list.addEventListener('click', event => {
   event.preventDefault();
